@@ -133,6 +133,36 @@ namespace FP
 			return source.Distinct(new LambdaComparer<TSource, TValue>(valueSelector));
 		}
 
+
+		/// <summary>
+		/// Determines whether a sequence contains a specified element by using a specified lambda value selector function.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of the input sequences.</typeparam>
+		/// <typeparam name="TValue">The type of the compared values.</typeparam>
+		/// <param name="first">A sequence in which to locate a value.</param>
+		/// <param name="value">The value to locate in the sequence.</param>
+		/// <param name="valueSelector">The value selector, calculates the values to be compared.</param>
+		/// <returns><c>true</c> if the source sequence contains an element that has the specified value; otherwise, false.</returns>
+		public static bool Contains<TSource, TValue>([NotNull]this IEnumerable<TSource> first, TSource value, [NotNull]Func<TSource, TValue> valueSelector)
+		{
+			return first.Contains(value, new LambdaComparer<TSource, TValue>(valueSelector));
+		}
+
+
+		/// <summary>
+		/// Produces the set union of two sequences by using a specified lambda value selector function.
+		/// </summary>
+		/// <typeparam name="TSource">The type of the elements of the input sequences.</typeparam>
+		/// <typeparam name="TValue">The type of the compared values.</typeparam>
+		/// <param name="first">An <see cref="IEnumerable{T}"/> whose distinct elements form the first set for the union.</param>
+		/// <param name="second">An <see cref="IEnumerable{T}"/> whose distinct elements form the first set for the union.</param>
+		/// <param name="valueSelector">The value selector, calculates the values to be compared.</param>
+		/// <returns>An <see cref="IEnumerable{T}"/> that contains the elements from both input sequences, excluding duplicates.</returns>
+		public static IEnumerable<TSource> Union<TSource, TValue>([NotNull]this IEnumerable<TSource> first, [NotNull]IEnumerable<TSource> second, [NotNull]Func<TSource, TValue> valueSelector)
+		{
+			return first.Union(second, new LambdaComparer<TSource, TValue>(valueSelector));
+		}
+
 		/// <summary>
 		///     Produces the set intersection of two sequences by using the specified lambda value selector function.
 		/// </summary>
