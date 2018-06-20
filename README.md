@@ -1,11 +1,11 @@
 LambdaComparer
 ==============
 
-LambdaComparer class is a flexible `IComparer<T>` implementation, which compares the values returned from the specified selector. 
+LambdaComparer class is a flexible `IComparer<T>` implementation, which compares the values returned from the specified selector.
 
 ````csharp
 var equalityComparer = new LambdaComparer<string,int>(x=>x.Length);
-var dict = new Dictionary<string, string>(new LambdaComparer<string, int>(x => x.Length)); 
+var dict = new Dictionary<string, string>(new LambdaComparer<string, int>(x => x.Length));
 // can contain just one string of each length
 ````
 
@@ -26,3 +26,14 @@ var list2 = new[] { "dd", "eeee" };
 var intersect = list1.Intersect(list2, x => x.Length); // returns { "aa", "aaaa" }
 ````
 
+Build
+=====
+
+Build the project using latest dotnet CLI (Currently 2.1.300)
+
+````bash
+dotnet build
+dotnet test LambdaComparer.Test/
+dotnet pack
+dotnet nuget push -k mySecretNugetKey LambdaComparer.0.2.0.nupkg  -s "https://api.nuget.org/v3/index.json"
+````
