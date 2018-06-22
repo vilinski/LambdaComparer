@@ -1,6 +1,9 @@
 LambdaComparer
 ==============
 
+[![Build status](https://ci.appveyor.com/api/projects/status/2eun1831f3odmf85/branch/master?svg=true)](https://ci.appveyor.com/project/vilinski/lambdacomparer/branch/master)
+
+
 LambdaComparer class is a flexible `IComparer<T>` implementation, which compares the values returned from the specified selector.
 
 ````csharp
